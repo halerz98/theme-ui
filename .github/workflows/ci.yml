@@ -49,6 +49,12 @@ jobs:
     env:
       CAN_RELEASE: ${{ secrets.AUTO_RELEASE_GH_TOKEN != '' }}
 
+  test:
+    runs-on: ubuntu-latest
+    needs: [release_check]
+    steps:
+      - run: echo "${{ toJSON(needs) }}"
+
   release:
     runs-on: ubuntu-latest
     needs: [release_check]
